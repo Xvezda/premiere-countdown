@@ -19,6 +19,10 @@
       align-items: center;
       justify-content: center;
     }
+    #countdown {
+      width: 90vw;
+      height: 90vh;
+    }
     </style>
   </head>
   <body>
@@ -27,11 +31,6 @@
         <!-- TODO: Let's use animate tag instead of CSS -->
         <style type="text/css">
           <![CDATA[
-          #countdown {
-              width: 90vw;
-              height: 90vh;
-          }
-
           #colorful-strip {
               animation-name: colorful-strip-animation;
               animation-iteration-count: infinite;
@@ -118,16 +117,15 @@
           <pattern
             id="colorful-strip"
             x="0" y="0"
-            width="100%" height="55"
+            width="330" height="55"
             patternUnits="userSpaceOnUse"
-            patternContentUnits="objectBoundingBox"
           >
-            <rect x="0" y="0" width="1" height="1" fill="#ff6441" />
-            <rect x=".167" y="0" width="1" height="1" fill="#ff51c2" />
-            <rect x=".334" y="0" width="1" height="1" fill="#9262a7" />
-            <rect x=".501" y="0" width="1" height="1" fill="#5887ef" />
-            <rect x=".668" y="0" width="1" height="1" fill="#fdd35c" />
-            <rect x=".835" y="0" width="1" height="1" fill="#5cfdd8" />
+            <rect x="0" y="0" width="55" height="55" fill="#ff6441" />
+            <rect x="55" y="0" width="55" height="55" fill="#ff51c2" />
+            <rect x="110" y="0" width="55" height="55" fill="#9262a7" />
+            <rect x="165" y="0" width="55" height="55" fill="#5887ef" />
+            <rect x="220" y="0" width="55" height="55" fill="#fdd35c" />
+            <rect x="275" y="0" width="55" height="55" fill="#5cfdd8" />
           </pattern>
 
           <pattern
@@ -235,8 +233,9 @@
 
           <pattern
             id="wave-line"
-            width=".221"
-            height="1"
+            width="66.5"
+            height="20"
+            patternUnits="userSpaceOnUse"
           >
             <path
               d="M 0 10 Q 20 0, 40 10 T 80 0"
@@ -250,15 +249,12 @@
 
           <pattern
             id="wave-line-pattern"
-            y="20"
-            width="88.5%"
-            height="100%"
+            y="15"
+            width="133"
+            height="40"
             patternUnits="userSpaceOnUse"
           >
-            <rect x="0" y="0" width="100%" height="50" fill="url(#wave-line)" />
-            <rect x="0" y="12" width="100%" height="50" fill="url(#wave-line)" />
-            <rect x="0" y="24" width="100%" height="50" fill="url(#wave-line)" />
-            <rect x="0" y="36" width="100%" height="50" fill="url(#wave-line)" />
+            <rect x="0" y="0" width="300" height="50" fill="url(#wave-line)" />
           </pattern>
 
           <!-- TODO: Find cleaner way to do this -->
@@ -267,29 +263,29 @@
             width="20"
             height="20"
             patternUnits="userSpaceOnUse"
-            viewBox="-0.5 0 20 20"
+            viewBox="-0.5 0 40 40"
           >
             <g
               fill="transparent"
               stroke="gray"
               stroke-linejoin="miter"
-              stroke-width=".5"
+              stroke-width="1"
             >
               <polyline
-                points="10 0, 0 5, 10 10, 10 0, 20 5, 10 10, 20 15, 10 20, 10 10, 0 15, 20 25"
+                points="20 0, 0 10, 20 20, 20 0, 40 10, 20 20, 40 30, 20 40, 20 20, 0 30, 40 50"
               />
-              <line x1="0" y1="0" x2="0" y2="20">
+              <line x1="0" y1="0" x2="0" y2="40">
             </g>
           </pattern>
 
           <pattern
             id="triangular-pattern"
             x="3"
-            width="100%"
-            height="100%"
+            width="20"
+            height="20"
             patternUnits="userSpaceOnUse"
           >
-            <rect width="100%" height="100%" fill="url(#triangular)" />
+            <rect width="20" height="20" fill="url(#triangular)" />
           </pattern>
         </defs>
 
@@ -307,19 +303,17 @@
             </rect>
           </g>
           <g>
-            <!-- TODO: Can I specify translate of rect by ratio? -->
-            <rect x="0" y="70" width="100%" height="55" fill="url(#colorful-strip)">
-              <animateTransform attributeName="transform" type="translate" dur="10s" from="0" to="-300" repeatCount="indefinite" />
+            <rect x="0" y="70" width="330" height="55" fill="url(#colorful-strip)">
+              <animateTransform attributeName="transform" type="translate" dur="10s" from="0" to="-330" repeatCount="indefinite" />
             </rect>
-            <rect x="0" y="70" width="100%" height="55" fill="url(#colorful-strip)">
-              <animateTransform attributeName="transform" type="translate" dur="10s" from="300" to="0" repeatCount="indefinite" />
+            <rect x="0" y="70" width="330" height="55" fill="url(#colorful-strip)">
+              <animateTransform attributeName="transform" type="translate" dur="10s" from="330" to="0" repeatCount="indefinite" />
             </rect>
           </g>
           <g>
-            <!-- FIXME: Fix animation seamless -->
             <g clip-path="url(#vertical-stripe-cut-1)">
-              <rect x="0" y="175" width="150" height="45" fill="url(#vertical-stripe-pattern-1)">
-                <animateTransform attributeName="transform" type="translate" dur="20s" from="-75" to="0" repeatCount="indefinite" />
+              <rect x="0" y="175" width="280" height="45" fill="url(#vertical-stripe-pattern-1)">
+                <animateTransform attributeName="transform" type="translate" dur="20s" from="-140" to="0" repeatCount="indefinite" />
               </rect>
             </g>
             <g clip-path="url(#vertical-stripe-cut-2)">
@@ -358,10 +352,31 @@
           <g transform="rotate(30)">
             <rect
               x="0" y="15"
-              width="1200" height="90"
+              width="1200" height="20"
               fill="url(#wave-line-pattern)"
             >
               <animateTransform attributeName="transform" type="translate" from="-600" to="0" repeatCount="indefinite" dur="20s" />
+            </rect>
+            <rect
+              x="0" y="15"
+              width="1200" height="20"
+              fill="url(#wave-line-pattern)"
+            >
+              <animateTransform attributeName="transform" type="translate" from="-600 12" to="0 12" repeatCount="indefinite" dur="20s" />
+            </rect>
+            <rect
+              x="0" y="15"
+              width="1200" height="20"
+              fill="url(#wave-line-pattern)"
+            >
+              <animateTransform attributeName="transform" type="translate" from="-600 24" to="0 24" repeatCount="indefinite" dur="20s" />
+            </rect>
+            <rect
+              x="0" y="15"
+              width="1200" height="20"
+              fill="url(#wave-line-pattern)"
+            >
+              <animateTransform attributeName="transform" type="translate" from="-600 36" to="0 36" repeatCount="indefinite" dur="20s" />
             </rect>
           </g>
 
