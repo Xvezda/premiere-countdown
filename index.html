@@ -27,7 +27,12 @@
   </head>
   <body>
     <div id="container">
-      <svg id="countdown" viewBox="0 0 300 300">
+      <svg
+        id="countdown"
+        viewBox="0 0 300 300"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
         <!-- TODO: Let's use animate tag instead of CSS -->
         <style type="text/css">
           <![CDATA[
@@ -94,6 +99,7 @@
         </style>
         <defs>
           <!-- FIXME: Make background transparent -->
+          <!-- TODO: Can I use <use> or reference to reduce redundancy? -->
           <mask id="main-circle">
             <circle r="150" cx="50%" cy="50%" fill="white" />
             <rect x="0" y="245" width="100%" height="15" fill="black" />
@@ -258,6 +264,46 @@
             <rect x="0" y="0" width="300" height="50" fill="url(#wave-line)" />
           </pattern>
 
+          <pattern
+            id="hexagons"
+            width="90"
+            height="50"
+            patternUnits="userSpaceOnUse"
+          >
+            <path
+              d="M 0 0 L 15 0
+                 L 30 25 L 60 25 L 75 0 L 90 0
+                 M 30 25 L 15 50 L 0 50
+                 M 60 25 L 75 50 L 90 50
+                 "
+              fill="transparent"
+              stroke="black"
+              stroke-linejoin="miter"
+              stroke-linecap="square"
+              stroke-width="20"
+            />
+          </pattern>
+
+          <pattern
+            id="hexagon-pattern"
+            x="10"
+            width="90"
+            height="50"
+            patternUnits="userSpaceOnUse"
+            viewBox="0 0 1080 600"
+          >
+            <rect x="0" y="0" width="1080" height="600" fill="url(#hexagons)" />
+          </pattern>
+
+          <mask id="hexagon-mask-left">
+            <rect x="0" y="260" width="300" height="40" fill="white" />
+            <rect x="0" y="260" width="150" height="40" fill="url(#hexagon-pattern)" />
+          </mask>
+
+          <mask id="hexagon-mask-right">
+            <rect x="150" y="260" width="300" height="40" fill="white" />
+          </mask>
+
           <!-- TODO: Find cleaner way to do this -->
           <pattern
             id="triangular"
@@ -345,9 +391,130 @@
             <rect id="brightness-4" class="brightness-box" x="178" y="220" width="56" height="40" fill="darkgray" />
             <rect id="brightness-5" class="brightness-box" x="234" y="220" width="56" height="40" fill="lightgray" />
           </g>
+
+          <!-- TODO: Use easing to animation -->
           <g>
-            <rect x="0" y="260" width="100%" height="40" fill="#2ce0c7" />
-            <rect x="150" y="260" width="50%" height="40" fill="#29b5c3" />
+            <rect
+              x="0"
+              y="260"
+              width="300"
+              height="40"
+              fill="#29b5c3"
+            />
+            <g mask="url(#hexagon-mask-left)"
+  >
+              <animateTransform
+                id="hexMaskMoveRight"
+                attributeName="transform"
+                type="translate"
+                from="0"
+                to="5"
+                dur="1s"
+                begin="0s;hexMaskMoveLeft.end"
+              />
+              <animateTransform
+                id="hexMaskMoveLeft"
+                attributeName="transform"
+                type="translate"
+                from="5"
+                to="0"
+                dur="1s"
+                begin="hexMaskMoveRight.end"
+              />
+
+              <animate
+                id="hexMaskFadeIn"
+                attributeName="opacity"
+                from="0"
+                to="1"
+                dur="1s"
+                begin="hexMaskMoveLeft.begin"
+              />
+              <animate
+                id="hexMaskFadeOut"
+                attributeName="opacity"
+                from="1"
+                to="0"
+                dur="1s"
+                begin="hexMaskMoveRight.begin"
+              />
+
+              <rect
+                x="0"
+                y="260"
+                width="150"
+                height="40"
+                fill="#5cfdd8"
+              />
+
+            </g>
+
+            <g>
+              <rect
+                x="150"
+                y="260"
+                width="150"
+                height="40"
+                fill="#29b5c3"
+              >
+                <animate
+                  id="hexMaskColorChange"
+                  attributeName="fill"
+                  from="#29b5c3"
+                  to="#5887ef"
+                  dur="1s"
+                  begin="0s;hexMaskColorRestore.end"
+                />
+                <animate
+                  id="hexMaskColorRestore"
+                  attributeName="fill"
+                  from="#5887ef"
+                  to="#29b5c3"
+                  dur="1s"
+                  begin="hexMaskColorChange.end"
+                />
+              </rect>
+            </g>
+
+            <g mask="url(#hexagon-mask-right)">
+              <!-- Reuse left mask -->
+              <g mask="url(#hexagon-mask-left)" transform="translate(150)"
+    >
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  from="145"
+                  to="150"
+                  dur="1s"
+                  begin="hexMaskColorChange.begin"
+                />
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  from="150"
+                  to="145"
+                  dur="1s"
+                  begin="hexMaskColorRestore.begin"
+                />
+                <rect x="0" y="260" width="300" height="40" fill="#9262a7" opacity="0">
+                  <animate
+                    attributeName="opacity"
+                    from="0"
+                    to="1"
+                    dur="1s"
+                    begin="hexMaskColorChange.begin"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    from="1"
+                    to="0"
+                    dur="1s"
+                    begin="hexMaskColorRestore.begin"
+                  />
+                </rect>
+              </g>
+            </g>
+
           </g>
 
           <g transform="rotate(30)">
@@ -384,16 +551,136 @@
           <g>
             <rect x="75" y="125" width="150" height="50" fill="#333" />
             <rect x="75" y="125" width="150" height="50" fill="url(#triangular-pattern)" />
-            <text
-              font-family="Amaranth"
-              font-size="3.5rem"
-              text-anchor="middle"
-              letter-spacing="2.5"
-              x="150"
-              y="168"
-            >
-              <tspan fill="white">1:23</tspan>
-            </text>
+            <defs>
+              <text id="tZero" font-family="Amaranth" font-size="3.5rem" text-anchor="middle" fill="white"
+              >0</text>
+              <text id="tOne" font-family="Amaranth" font-size="3.5rem" text-anchor="middle" fill="white"
+              >1</text>
+              <text id="tTwo" font-family="Amaranth" font-size="3.5rem" text-anchor="middle" fill="white"
+              >2</text>
+              <text id="tThree" font-family="Amaranth" font-size="3.5rem" text-anchor="middle" fill="white"
+              >3</text>
+              <text id="tFour" font-family="Amaranth" font-size="3.5rem" text-anchor="middle" fill="white"
+              >4</text>
+              <text id="tFive" font-family="Amaranth" font-size="3.5rem" text-anchor="middle" fill="white"
+              >5</text>
+              <text id="tSix" font-family="Amaranth" font-size="3.5rem" text-anchor="middle" fill="white"
+              >6</text>
+              <text id="tSeven" font-family="Amaranth" font-size="3.5rem" text-anchor="middle" fill="white"
+              >7</text>
+              <text id="tEight" font-family="Amaranth" font-size="3.5rem" text-anchor="middle" fill="white"
+              >8</text>
+              <text id="tNine" font-family="Amaranth" font-size="3.5rem" text-anchor="middle" fill="white"
+              >9</text>
+            </defs>
+
+            <g id="timeSegments" transform="translate(-3)">
+              <g id="secondSegment">
+                <use x="195" y="168" href="#tNine" opacity="0">
+                  <animate id="oneS" attributeName="opacity" from="1" to="0" dur="1s" begin="0s;zeroS.end" />
+                </use>
+                <use x="195" y="168" href="#tEight" opacity="0">
+                  <animate id="twoS" attributeName="opacity" from="1" to="0" dur="1s" begin="oneS.end" />
+                </use>
+                <use x="195" y="168" href="#tSeven" opacity="0">
+                  <animate id="threeS" attributeName="opacity" from="1" to="0" dur="1s" begin="twoS.end" />
+                </use>
+                <use x="195" y="168" href="#tSix" opacity="0">
+                  <animate id="fourS" attributeName="opacity" from="1" to="0" dur="1s" begin="threeS.end" />
+                </use>
+                <use x="195" y="168" href="#tFive" opacity="0">
+                  <animate id="fiveS" attributeName="opacity" from="1" to="0" dur="1s" begin="fourS.end" />
+                </use>
+                <use x="195" y="168" href="#tFour" opacity="0">
+                  <animate id="sixS" attributeName="opacity" from="1" to="0" dur="1s" begin="fiveS.end" />
+                </use>
+                <use x="195" y="168" href="#tThree" opacity="0">
+                  <animate id="sevenS" attributeName="opacity" from="1" to="0" dur="1s" begin="sixS.end" />
+                </use>
+                <use x="195" y="168" href="#tTwo" opacity="0">
+                  <animate id="eightS" attributeName="opacity" from="1" to="0" dur="1s" begin="sevenS.end" />
+                </use>
+                <use x="195" y="168" href="#tOne" opacity="0">
+                  <animate id="nineS" attributeName="opacity" from="1" to="0" dur="1s" begin="eightS.end" />
+                </use>
+                <use x="195" y="168" href="#tZero" opacity="0">
+                  <animate id="zeroS" attributeName="opacity" from="1" to="0" dur="1s" begin="nineS.end" />
+                </use>
+              </g>
+
+              <g id="tenSecondSegment">
+                <use x="160" y="168" href="#tFive" opacity="0">
+                  <animate id="fiveTs" attributeName="opacity" from="0" to="1" dur=".1s" begin="0s; zeroT.end" fill="freeze" />
+                  <animate id="fiveT" attributeName="opacity" from="1" to="0" dur="1s" begin="9s; zeroT.end+9s" fill="freeze" />
+                </use>
+                <use x="160" y="168" href="#tFour" opacity="0">
+                  <animate id="sixTs" attributeName="opacity" from="0" to="1" dur=".1s" begin="fiveT.end" fill="freeze" />
+                  <animate id="sixT" attributeName="opacity" from="1" to="0" dur="1s" begin="fiveT.end+9s" fill="freeze" />
+                </use>
+                <use x="160" y="168" href="#tThree" opacity="0">
+                  <animate id="sevenTs" attributeName="opacity" from="0" to="1" dur=".1s" begin="sixT.end" fill="freeze" />
+                  <animate id="sevenT" attributeName="opacity" from="1" to="0" dur="1s" begin="sixT.end+9s" fill="freeze" />
+                </use>
+                <use x="160" y="168" href="#tTwo" opacity="0">
+                  <animate id="eightTs" attributeName="opacity" from="0" to="1" dur=".1s" begin="sevenT.end" fill="freeze" />
+                  <animate id="eightT" attributeName="opacity" from="1" to="0" dur="1s" begin="sevenT.end+9s" fill="freeze" />
+                </use>
+                <use x="160" y="168" href="#tOne" opacity="0">
+                  <animate id="nineTs" attributeName="opacity" from="0" to="1" dur=".1s" begin="eightT.end" fill="freeze" />
+                  <animate id="nineT" attributeName="opacity" from="1" to="0" dur="1s" begin="eightT.end+9s" fill="freeze" />
+                </use>
+                <use x="160" y="168" href="#tZero" opacity="0">
+                  <animate id="zeroTs" attributeName="opacity" from="0" to="1" dur=".1s" begin="nineT.end" fill="freeze" />
+                  <animate id="zeroT" attributeName="opacity" from="1" to="0" dur="1s" begin="nineT.end+9s" fill="freeze" />
+                </use>
+              </g>
+
+              <text x="132" y="165" font-family="Amaranth" font-size="3.5rem" text-anchor="middle" fill="white">:</text>
+
+              <g id="minuteSegment">
+                <use x="110" y="168" href="#tNine" opacity="0">
+                  <animate id="oneMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="0s; zeroM.end" fill="freeze" />
+                  <animate id="oneM" attributeName="opacity" from="1" to="0" dur="1s" begin="59s; zeroM.end+59s" fill="freeze" />
+                </use>
+                <use x="110" y="168" href="#tEight" opacity="0">
+                  <animate id="twoMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="oneM.end" fill="freeze" />
+                  <animate id="twoM" attributeName="opacity" from="1" to="0" dur="1s" begin="oneM.end+59s" fill="freeze" />
+                </use>
+                <use x="110" y="168" href="#tSeven" opacity="0">
+                  <animate id="threeMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="twoM.end" fill="freeze" />
+                  <animate id="threeM" attributeName="opacity" from="1" to="0" dur="1s" begin="twoM.end+59s" fill="freeze" />
+                </use>
+                <use x="110" y="168" href="#tSix" opacity="0">
+                  <animate id="fourMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="threeM.end" fill="freeze" />
+                  <animate id="fourM" attributeName="opacity" from="1" to="0" dur="1s" begin="threeM.end+59s" fill="freeze" />
+                </use>
+                <use x="110" y="168" href="#tFive" opacity="0">
+                  <animate id="fiveMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="fourM.end" fill="freeze" />
+                  <animate id="fiveM" attributeName="opacity" from="1" to="0" dur="1s" begin="fourM.end+59s" fill="freeze" />
+                </use>
+                <use x="110" y="168" href="#tFour" opacity="0">
+                  <animate id="sixMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="fiveM.end" fill="freeze" />
+                  <animate id="sixM" attributeName="opacity" from="1" to="0" dur="1s" begin="fiveM.end+59s" fill="freeze" />
+                </use>
+                <use x="110" y="168" href="#tThree" opacity="0">
+                  <animate id="sevenMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="sixM.end" fill="freeze" />
+                  <animate id="sevenM" attributeName="opacity" from="1" to="0" dur="1s" begin="sixM.end+59s" fill="freeze" />
+                </use>
+                <use x="110" y="168" href="#tTwo" opacity="0">
+                  <animate id="eightMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="sevenM.end" fill="freeze" />
+                  <animate id="eightM" attributeName="opacity" from="1" to="0" dur="1s" begin="sevenM.end+59s" fill="freeze" />
+                </use>
+                <use x="110" y="168" href="#tOne" opacity="0">
+                  <animate id="nineMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="eightM.end" fill="freeze" />
+                  <animate id="nineM" attributeName="opacity" from="1" to="0" dur="1s" begin="eightM.end+59s" fill="freeze" />
+                </use>
+                <use x="110" y="168" href="#tZero" opacity="0">
+                  <animate id="zeroMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="nineM.end" fill="freeze" />
+                  <animate id="zeroM" attributeName="opacity" from="1" to="0" dur="1s" begin="nineM.end+59s" fill="freeze" />
+                </use>
+              </g>
+            </g>
+
           </g>
 
           <g>
