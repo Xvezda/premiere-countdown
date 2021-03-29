@@ -7,11 +7,12 @@
   "private": true,
   "scripts": {
     "start": "serve",
-    "deploy": "gh-pages -d dist",
-    "build": "cp -R src/ dist/ && cp README.md dist/ && cp LICENSE dist/ && cp package.json dist/"
+    "deploy": "yarn build && gh-pages -d dist",
+    "build": "mkdir -p dist/ && html-minifier-terser --case-sensitive --keep-closing-slash --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true -o dist/index.html src/index.html && cp README.md dist/ && cp LICENSE dist/ && cp package.json dist/"
   },
   "devDependencies": {
     "gh-pages": "^3.1.0",
+    "html-minifier-terser": "^5.1.1",
     "serve": "^11.3.2"
   }
 }
