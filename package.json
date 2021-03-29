@@ -1,0 +1,17 @@
+{
+  "name": "premiere-countdown",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Xvezda <xvezda@naver.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "serve",
+    "deploy": "gh-pages -d dist",
+    "build": "cp -R src/ dist/ && cp README.md dist/ && cp LICENSE dist/ && cp package.json dist/"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0",
+    "serve": "^11.3.2"
+  }
+}
