@@ -14,6 +14,7 @@
       padding: 0;
       margin: 0;
     }
+
     #container {
       width: 100vw;
       height: 100vh;
@@ -21,6 +22,7 @@
       align-items: center;
       justify-content: center;
     }
+
     #countdown {
       width: 90vw;
       height: 90vh;
@@ -35,23 +37,196 @@
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
       >
-        <!-- TODO: Let's use animate tag instead of CSS -->
         <style type="text/css">
           <![CDATA[
-          #colorful-strip {
-              animation-name: colorful-strip-animation;
+          #redBoxesLeft {
+               animation-name: red-boxes-left-move;
+               animation-iteration-count: infinite;
+               animation-duration: 20s;
+               animation-timing-function: linear;
+          }
+
+          #redBoxesRight {
+               animation-name: red-boxes-right-move;
+               animation-iteration-count: infinite;
+               animation-duration: 20s;
+               animation-timing-function: linear;
+          }
+
+          @keyframes red-boxes-left-move {
+               from {
+                   transform: translate3d(0px, 0, 0);
+                   -webkit-transform: translate3d(0px, 0, 0);
+               }
+               to {
+                   transform: translate3d(300px, 0, 0);
+                   -webkit-transform: translate3d(300px, 0, 0);
+               }
+          }
+
+          @keyframes red-boxes-right-move {
+               from {
+                   transform: translate3d(-300px, 0, 0);
+                   -webkit-transform: translate3d(-300px, 0, 0);
+               }
+               to {
+                   transform: translate3d(0px, 0, 0);
+                   -webkit-transform: translate3d(0px, 0, 0);
+               }
+          }
+
+          #blackBoxesRight {
+              animation-name: black-boxes-right-move;
               animation-iteration-count: infinite;
               animation-duration: 10s;
               animation-timing-function: linear;
           }
 
-          @keyframes colorful-strip-animation {
+          @keyframes black-boxes-right-move {
+               from {
+                   transform: translate3d(0px, 0, 0);
+               }
+               to {
+                   transform: translate3d(300px, 0, 0);
+               }
+          }
+
+          #blackBoxesLeft {
+              animation-name: black-boxes-left-move;
+              animation-iteration-count: infinite;
+              animation-duration: 10s;
+              animation-timing-function: linear;
+          }
+
+          @keyframes black-boxes-left-move {
+               from {
+                   transform: translate3d(-300px, 0, 0);
+               }
+               to {
+                   transform: translate3d(0px, 0, 0);
+               }
+          }
+
+          #colorfulStripLeft {
+              animation-name: colorful-strip-left-move;
+              animation-iteration-count: infinite;
+              animation-duration: 10s;
+              animation-timing-function: linear;
+          }
+
+          #colorfulStripRight {
+              animation-name: colorful-strip-left-move;
+              animation-iteration-count: infinite;
+              animation-duration: 10s;
+              animation-timing-function: linear;
+          }
+
+          @keyframes colorful-strip-left-move {
               from {
-                  x: 0%;
+                  transform: translateX(0px);
               }
               to {
-                  x: 100%;
+                  transform: translateX(-330px);
               }
+          }
+
+          @-webkit-keyframes colorful-strip-left-move {
+              from {
+                  -webkit-transform: translate3d(0, 0, 0);
+              }
+              to {
+                  -webkit-transform: translate3d(-330px, 0, 0);
+              }
+          }
+
+          @keyframes colorful-strip-right-move {
+              from {
+                  transform: translateX(330px);
+              }
+              to {
+                  transform: translateX(0px);
+              }
+          }
+
+          @-webkit-keyframes colorful-strip-right-move {
+              from {
+                  -webkit-transform: translate3d(330px, 0, 0);
+              }
+              to {
+                  -webkit-transform: translate3d(0px, 0, 0);
+              }
+          }
+
+          #verticalStrip1 {
+               animation-name: vertical-strip-1-move;
+               animation-duration: 20s;
+               animation-iteration-count: infinite;
+               animation-timing-function: linear;
+          }
+
+          @keyframes vertical-strip-1-move {
+               from {
+                   transform: translate3d(-140px, 0, 0);
+                   -webkit-transform: translate3d(-140px, 0, 0);
+               }
+               to {
+                   transform: translate3d(0px, 0, 0);
+                   -webkit-transform: translate3d(0px, 0, 0);
+               }
+          }
+
+          #verticalStrip2 {
+               animation-name: vertical-strip-2-move;
+               animation-duration: 30s;
+               animation-iteration-count: infinite;
+               animation-timing-function: linear;
+          }
+
+          @keyframes vertical-strip-2-move {
+               from {
+                   transform: translate3d(-60px, 0, 0);
+                   -webkit-transform: translate3d(-60px, 0, 0);
+               }
+               to {
+                   transform: translate3d(0px, 0, 0);
+                   -webkit-transform: translate3d(0px, 0, 0);
+               }
+          }
+
+          #verticalStrip3 {
+               animation-name: vertical-strip-3-move;
+               animation-duration: 40s;
+               animation-iteration-count: infinite;
+               animation-timing-function: linear;
+          }
+
+          @keyframes vertical-strip-3-move {
+               from {
+                   transform: translate3d(-75px, 0, 0);
+                   -webkit-transform: translate3d(-75px, 0, 0);
+               }
+               to {
+                   transform: translate3d(0px, 0, 0);
+                   -webkit-transform: translate3d(0px, 0, 0);
+               }
+          }
+
+          #verticalStrip4 {
+               animation-name: vertical-strip-4-move;
+               animation-duration: 50s;
+               animation-iteration-count: infinite;
+               animation-timing-function: linear;
+          }
+
+          @keyframes vertical-strip-4-move {
+               from {
+                   transform: translate3d(-90px, 0, 0);
+                   -webkit-transform: translate3d(-90px, 0, 0);
+               }
+               to {
+                   transform: translate3d(0px, 0, 0);
+                   -webkit-transform: translate3d(0px, 0, 0);
+               }
           }
 
           .brightness-box {
@@ -100,15 +275,91 @@
 
           @-webkit-keyframes pink-bar-animation {
               0% {
-                  -webkit-transform: translate(-30%) scaleX(0.45);
+                  -webkit-transform: translate3d(-30%, 0, 0) scaleX(0.45);
               }
               50% {
-                  -webkit-transform: translate(0%) scaleX(0.8);
+                  -webkit-transform: translate3d(0%, 0, 0) scaleX(0.8);
               }
               100% {
-                  -webkit-transform: translate(30%) scaleX(0.45);
+                  -webkit-transform: translate3d(30%, 0 ,0) scaleX(0.45);
               }
           }
+
+          #hexMaskLeftGroup {
+              animation-name: hex-mask-left-move, hex-mask-left-fade;
+              animation-direction: alternate;
+              animation-duration: 1s;
+              animation-iteration-count: infinite;
+              animation-timing-function: ease-out;
+          }
+
+          @keyframes hex-mask-left-move {
+              from {
+                  transform: translate3d(0px, 0, 0);
+                  -webkit-transform: translate3d(0px, 0, 0);
+              }
+              to {
+                  transform: translate3d(5px, 0, 0);
+                  -webkit-transform: translate3d(5px, 0, 0);
+              }
+          }
+
+          @keyframes hex-mask-left-fade {
+              from {
+                  opacity: 1;
+              }
+              to {
+                  opacity: 0;
+              }
+          }
+
+          #hexMaskRightGroup {
+              animation-name: hex-mask-right-move, hex-mask-right-fade;
+              animation-direction: alternate;
+              animation-duration: 1s;
+              animation-delay: -1s;
+              animation-iteration-count: infinite;
+              animation-timing-function: ease-out;
+          }
+
+          @keyframes hex-mask-right-move {
+              from {
+                  transform: translate3d(150px, 0, 0);
+                  -webkit-transform: translate3d(150px, 0, 0);
+              }
+              to {
+                  transform: translate3d(145px, 0, 0);
+                  -webkit-transform: translate3d(145px, 0, 0);
+              }
+          }
+
+          @keyframes hex-mask-right-fade {
+              from {
+                  opacity: 1;
+              }
+              to {
+                  opacity: 0;
+              }
+          }
+
+          #waveFlow {
+               animation-name: wave-flow-move;
+               animation-duration: 20s;
+               animation-iteration-count: infinite;
+               animation-timing-function: linear;
+          }
+
+          @keyframes wave-flow-move {
+               from {
+                   transform: translate3d(-600px, 0, 0);
+                   -webkit-transform: translate3d(-600px, 0, 0);
+               }
+               to {
+                   transform: translate3d(0px, 0, 0);
+                   -webkit-transform: translate3d(0px, 0, 0);
+               }
+          }
+
           ]]>
         </style>
         <defs>
@@ -356,41 +607,26 @@
             <rect x="0" y="0" width="100%" height="20" fill="#f19494" />
           </g>
           <g>
-            <rect x="0" y="30" width="100%" height="30" fill="url(#red-boxes)">
-              <animateTransform attributeName="transform" type="translate" dur="20s" from="0" to="300" repeatCount="indefinite" />
-            </rect>
-            <rect x="0" y="30" width="100%" height="30" fill="url(#red-boxes)">
-              <animateTransform attributeName="transform" type="translate" dur="20s" from="-300" to="0" repeatCount="indefinite" />
-            </rect>
+            <rect id="redBoxesLeft" x="0" y="30" width="100%" height="30" fill="url(#red-boxes)" />
+            <rect id="redBoxesRight" x="0" y="30" width="100%" height="30" fill="url(#red-boxes)" />
           </g>
           <g>
-            <rect x="0" y="70" width="330" height="55" fill="url(#colorful-strip)">
-              <animateTransform attributeName="transform" type="translate" dur="10s" from="0" to="-330" repeatCount="indefinite" />
-            </rect>
-            <rect x="0" y="70" width="330" height="55" fill="url(#colorful-strip)">
-              <animateTransform attributeName="transform" type="translate" dur="10s" from="330" to="0" repeatCount="indefinite" />
-            </rect>
+            <rect id="colorfulStripLeft" x="0" y="70" width="330" height="55" fill="url(#colorful-strip)" />
+            <rect id="colorfulStripRight" x="330" y="70" width="330" height="55" fill="url(#colorful-strip)" />
           </g>
           <g>
             <g clip-path="url(#vertical-stripe-cut-1)">
-              <rect x="0" y="175" width="280" height="45" fill="url(#vertical-stripe-pattern-1)">
-                <animateTransform attributeName="transform" type="translate" dur="20s" from="-140" to="0" repeatCount="indefinite" />
-              </rect>
+              <rect id="verticalStrip1" x="0" y="175" width="280" height="45" fill="url(#vertical-stripe-pattern-1)" />
             </g>
             <g clip-path="url(#vertical-stripe-cut-2)">
-              <rect x="25%" y="175" width="120" height="45" fill="url(#vertical-stripe-pattern-2)">
-                <animateTransform attributeName="transform" type="translate" dur="30s" from="-60" to="0" repeatCount="indefinite" />
-              </rect>
+              <rect id="verticalStrip2" x="25%" y="175" width="120" height="45" fill="url(#vertical-stripe-pattern-2)" />
             </g>
             <g clip-path="url(#vertical-stripe-cut-3)">
-              <rect x="45%" y="175" width="150" height="45" fill="url(#vertical-stripe-pattern-3)">
-                <animateTransform attributeName="transform" type="translate" dur="40s" from="-75" to="0" repeatCount="indefinite" />
+              <rect id="verticalStrip3" x="45%" y="175" width="150" height="45" fill="url(#vertical-stripe-pattern-3)" />
               </rect>
             </g>
             <g clip-path="url(#vertical-stripe-cut-4)">
-              <rect x="70%" y="175" width="180" height="45" fill="url(#vertical-stripe-pattern-4)">
-                <animateTransform attributeName="transform" type="translate" dur="50s" from="-90" to="0" repeatCount="indefinite" />
-              </rect>
+              <rect id="verticalStrip4" x="70%" y="175" width="180" height="45" fill="url(#vertical-stripe-pattern-4)" />
             </g>
           </g>
           <defs>
@@ -415,44 +651,8 @@
               height="40"
               fill="#29b5c3"
             />
-            <g mask="url(#hexagon-mask-left)"
+            <g id="hexMaskLeftGroup" mask="url(#hexagon-mask-left)"
   >
-              <animateTransform
-                id="hexMaskMoveRight"
-                attributeName="transform"
-                type="translate"
-                from="0"
-                to="5"
-                dur="1s"
-                begin="0s;hexMaskMoveLeft.end"
-              />
-              <animateTransform
-                id="hexMaskMoveLeft"
-                attributeName="transform"
-                type="translate"
-                from="5"
-                to="0"
-                dur="1s"
-                begin="hexMaskMoveRight.end"
-              />
-
-              <animate
-                id="hexMaskFadeIn"
-                attributeName="opacity"
-                from="0"
-                to="1"
-                dur="1s"
-                begin="hexMaskMoveLeft.begin"
-              />
-              <animate
-                id="hexMaskFadeOut"
-                attributeName="opacity"
-                from="1"
-                to="0"
-                dur="1s"
-                begin="hexMaskMoveRight.begin"
-              />
-
               <rect
                 x="0"
                 y="260"
@@ -492,74 +692,44 @@
 
             <g mask="url(#hexagon-mask-right)">
               <!-- Reuse left mask -->
-              <g mask="url(#hexagon-mask-left)" transform="translate(150)"
+              <g id="hexMaskRightGroup" mask="url(#hexagon-mask-left)" transform="translate(150)"
     >
-                <animateTransform
-                  attributeName="transform"
-                  type="translate"
-                  from="145"
-                  to="150"
-                  dur="1s"
-                  begin="hexMaskColorChange.begin"
-                />
-                <animateTransform
-                  attributeName="transform"
-                  type="translate"
-                  from="150"
-                  to="145"
-                  dur="1s"
-                  begin="hexMaskColorRestore.begin"
-                />
-                <rect x="0" y="260" width="300" height="40" fill="#9262a7" opacity="0">
-                  <animate
-                    attributeName="opacity"
-                    from="0"
-                    to="1"
-                    dur="1s"
-                    begin="hexMaskColorChange.begin"
-                  />
-                  <animate
-                    attributeName="opacity"
-                    from="1"
-                    to="0"
-                    dur="1s"
-                    begin="hexMaskColorRestore.begin"
-                  />
-                </rect>
+                <rect x="0" y="260" width="300" height="40" fill="#9262a7" />
               </g>
             </g>
 
           </g>
 
           <g transform="rotate(30)">
-            <rect
-              x="0" y="15"
-              width="1200" height="20"
-              fill="url(#wave-line-pattern)"
-            >
-              <animateTransform attributeName="transform" type="translate" from="-600" to="0" repeatCount="indefinite" dur="20s" />
-            </rect>
-            <rect
-              x="0" y="15"
-              width="1200" height="20"
-              fill="url(#wave-line-pattern)"
-            >
-              <animateTransform attributeName="transform" type="translate" from="-600 12" to="0 12" repeatCount="indefinite" dur="20s" />
-            </rect>
-            <rect
-              x="0" y="15"
-              width="1200" height="20"
-              fill="url(#wave-line-pattern)"
-            >
-              <animateTransform attributeName="transform" type="translate" from="-600 24" to="0 24" repeatCount="indefinite" dur="20s" />
-            </rect>
-            <rect
-              x="0" y="15"
-              width="1200" height="20"
-              fill="url(#wave-line-pattern)"
-            >
-              <animateTransform attributeName="transform" type="translate" from="-600 36" to="0 36" repeatCount="indefinite" dur="20s" />
-            </rect>
+            <g id="waveFlow">
+              <rect
+                x="0" y="15"
+                width="1200" height="20"
+                fill="url(#wave-line-pattern)"
+              >
+              </rect>
+              <rect
+                x="0" y="15"
+                width="1200" height="20"
+                fill="url(#wave-line-pattern)"
+                transform="translate(0, 12)"
+              >
+              </rect>
+              <rect
+                x="0" y="15"
+                width="1200" height="20"
+                fill="url(#wave-line-pattern)"
+                transform="translate(0, 24)"
+              >
+              </rect>
+              <rect
+                x="0" y="15"
+                width="1200" height="20"
+                fill="url(#wave-line-pattern)"
+                transform="translate(0, 36)"
+              >
+              </rect>
+            </g>
           </g>
 
           <g>
@@ -590,61 +760,67 @@
 
             <g id="timeSegments" transform="translate(-3)">
               <g id="secondSegment">
-                <use x="195" y="168" href="#tNine" opacity="0">
-                  <animate id="oneS" attributeName="opacity" from="1" to="0" dur="1s" begin="0s;zeroS.end" />
+                <use x="195" y="168" href="#tNine">
+                  <animate id="oneS" attributeName="opacity" from="1" to="0" dur="1s" begin="0s;zeroS.end" fill="freeze" />
                 </use>
                 <use x="195" y="168" href="#tEight" opacity="0">
-                  <animate id="twoS" attributeName="opacity" from="1" to="0" dur="1s" begin="oneS.end" />
+                  <animate id="twoS" attributeName="opacity" from="1" to="0" dur="1s" begin="oneS.end" fill="freeze" />
                 </use>
                 <use x="195" y="168" href="#tSeven" opacity="0">
-                  <animate id="threeS" attributeName="opacity" from="1" to="0" dur="1s" begin="twoS.end" />
+                  <animate id="threeS" attributeName="opacity" from="1" to="0" dur="1s" begin="twoS.end" fill="freeze" />
                 </use>
                 <use x="195" y="168" href="#tSix" opacity="0">
-                  <animate id="fourS" attributeName="opacity" from="1" to="0" dur="1s" begin="threeS.end" />
+                  <animate id="fourS" attributeName="opacity" from="1" to="0" dur="1s" begin="threeS.end" fill="freeze" />
                 </use>
                 <use x="195" y="168" href="#tFive" opacity="0">
-                  <animate id="fiveS" attributeName="opacity" from="1" to="0" dur="1s" begin="fourS.end" />
+                  <animate id="fiveS" attributeName="opacity" from="1" to="0" dur="1s" begin="fourS.end" fill="freeze" />
                 </use>
                 <use x="195" y="168" href="#tFour" opacity="0">
-                  <animate id="sixS" attributeName="opacity" from="1" to="0" dur="1s" begin="fiveS.end" />
+                  <animate id="sixS" attributeName="opacity" from="1" to="0" dur="1s" begin="fiveS.end" fill="freeze" />
                 </use>
                 <use x="195" y="168" href="#tThree" opacity="0">
-                  <animate id="sevenS" attributeName="opacity" from="1" to="0" dur="1s" begin="sixS.end" />
+                  <animate id="sevenS" attributeName="opacity" from="1" to="0" dur="1s" begin="sixS.end" fill="freeze" />
                 </use>
                 <use x="195" y="168" href="#tTwo" opacity="0">
-                  <animate id="eightS" attributeName="opacity" from="1" to="0" dur="1s" begin="sevenS.end" />
+                  <animate id="eightS" attributeName="opacity" from="1" to="0" dur="1s" begin="sevenS.end" fill="freeze" />
                 </use>
                 <use x="195" y="168" href="#tOne" opacity="0">
-                  <animate id="nineS" attributeName="opacity" from="1" to="0" dur="1s" begin="eightS.end" />
+                  <animate id="nineS" attributeName="opacity" from="1" to="0" dur="1s" begin="eightS.end" fill="freeze" />
                 </use>
                 <use x="195" y="168" href="#tZero" opacity="0">
-                  <animate id="zeroS" attributeName="opacity" from="1" to="0" dur="1s" begin="nineS.end" />
+                  <animate id="zeroS" attributeName="opacity" from="1" to="0" dur="1s" begin="nineS.end" fill="freeze" />
                 </use>
               </g>
 
               <g id="tenSecondSegment">
-                <use x="160" y="168" href="#tFive" opacity="0">
+                <use x="160" y="168" href="#tFive">
                   <animate id="fiveTs" attributeName="opacity" from="0" to="1" dur=".1s" begin="0s; zeroT.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="fiveTs.begin" />
                   <animate id="fiveT" attributeName="opacity" from="1" to="0" dur="1s" begin="9s; zeroT.end+9s" fill="freeze" />
                 </use>
-                <use x="160" y="168" href="#tFour" opacity="0">
+                <use x="160" y="168" href="#tFour">
                   <animate id="sixTs" attributeName="opacity" from="0" to="1" dur=".1s" begin="fiveT.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="sixTs.begin" />
                   <animate id="sixT" attributeName="opacity" from="1" to="0" dur="1s" begin="fiveT.end+9s" fill="freeze" />
                 </use>
-                <use x="160" y="168" href="#tThree" opacity="0">
+                <use x="160" y="168" href="#tThree">
                   <animate id="sevenTs" attributeName="opacity" from="0" to="1" dur=".1s" begin="sixT.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="sevenTs.begin" />
                   <animate id="sevenT" attributeName="opacity" from="1" to="0" dur="1s" begin="sixT.end+9s" fill="freeze" />
                 </use>
-                <use x="160" y="168" href="#tTwo" opacity="0">
+                <use x="160" y="168" href="#tTwo">
                   <animate id="eightTs" attributeName="opacity" from="0" to="1" dur=".1s" begin="sevenT.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="eightTs.begin" />
                   <animate id="eightT" attributeName="opacity" from="1" to="0" dur="1s" begin="sevenT.end+9s" fill="freeze" />
                 </use>
-                <use x="160" y="168" href="#tOne" opacity="0">
+                <use x="160" y="168" href="#tOne">
                   <animate id="nineTs" attributeName="opacity" from="0" to="1" dur=".1s" begin="eightT.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="nineTs.begin" />
                   <animate id="nineT" attributeName="opacity" from="1" to="0" dur="1s" begin="eightT.end+9s" fill="freeze" />
                 </use>
-                <use x="160" y="168" href="#tZero" opacity="0">
+                <use x="160" y="168" href="#tZero">
                   <animate id="zeroTs" attributeName="opacity" from="0" to="1" dur=".1s" begin="nineT.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="zeroTs.begin" />
                   <animate id="zeroT" attributeName="opacity" from="1" to="0" dur="1s" begin="nineT.end+9s" fill="freeze" />
                 </use>
               </g>
@@ -652,44 +828,54 @@
               <text x="132" y="165" font-family="Amaranth" font-size="3.5rem" text-anchor="middle" fill="white">:</text>
 
               <g id="minuteSegment">
-                <use x="110" y="168" href="#tNine" opacity="0">
+                <use x="110" y="168" href="#tNine">
                   <animate id="oneMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="0s; zeroM.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="oneMs.begin" />
                   <animate id="oneM" attributeName="opacity" from="1" to="0" dur="1s" begin="59s; zeroM.end+59s" fill="freeze" />
                 </use>
-                <use x="110" y="168" href="#tEight" opacity="0">
+                <use x="110" y="168" href="#tEight">
                   <animate id="twoMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="oneM.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="twoMs.begin" />
                   <animate id="twoM" attributeName="opacity" from="1" to="0" dur="1s" begin="oneM.end+59s" fill="freeze" />
                 </use>
-                <use x="110" y="168" href="#tSeven" opacity="0">
+                <use x="110" y="168" href="#tSeven">
                   <animate id="threeMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="twoM.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="threeMs.begin" />
                   <animate id="threeM" attributeName="opacity" from="1" to="0" dur="1s" begin="twoM.end+59s" fill="freeze" />
                 </use>
-                <use x="110" y="168" href="#tSix" opacity="0">
+                <use x="110" y="168" href="#tSix">
                   <animate id="fourMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="threeM.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="fourMs.begin" />
                   <animate id="fourM" attributeName="opacity" from="1" to="0" dur="1s" begin="threeM.end+59s" fill="freeze" />
                 </use>
-                <use x="110" y="168" href="#tFive" opacity="0">
+                <use x="110" y="168" href="#tFive">
                   <animate id="fiveMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="fourM.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="fiveMs.begin" />
                   <animate id="fiveM" attributeName="opacity" from="1" to="0" dur="1s" begin="fourM.end+59s" fill="freeze" />
                 </use>
-                <use x="110" y="168" href="#tFour" opacity="0">
+                <use x="110" y="168" href="#tFour">
                   <animate id="sixMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="fiveM.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="sixMs.begin" />
                   <animate id="sixM" attributeName="opacity" from="1" to="0" dur="1s" begin="fiveM.end+59s" fill="freeze" />
                 </use>
-                <use x="110" y="168" href="#tThree" opacity="0">
+                <use x="110" y="168" href="#tThree">
                   <animate id="sevenMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="sixM.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="sevenMs.begin" />
                   <animate id="sevenM" attributeName="opacity" from="1" to="0" dur="1s" begin="sixM.end+59s" fill="freeze" />
                 </use>
-                <use x="110" y="168" href="#tTwo" opacity="0">
+                <use x="110" y="168" href="#tTwo">
                   <animate id="eightMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="sevenM.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="eightMs.begin" />
                   <animate id="eightM" attributeName="opacity" from="1" to="0" dur="1s" begin="sevenM.end+59s" fill="freeze" />
                 </use>
-                <use x="110" y="168" href="#tOne" opacity="0">
+                <use x="110" y="168" href="#tOne">
                   <animate id="nineMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="eightM.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="nineMs.begin" />
                   <animate id="nineM" attributeName="opacity" from="1" to="0" dur="1s" begin="eightM.end+59s" fill="freeze" />
                 </use>
-                <use x="110" y="168" href="#tZero" opacity="0">
+                <use x="110" y="168" href="#tZero">
                   <animate id="zeroMs" attributeName="opacity" from="0" to="1" dur=".1s" begin="nineM.end" fill="freeze" />
+                  <set attributeName="opacity" to="0" begin="0s" end="zeroMs.begin" />
                   <animate id="zeroM" attributeName="opacity" from="1" to="0" dur="1s" begin="nineM.end+59s" fill="freeze" />
                 </use>
               </g>
@@ -699,25 +885,9 @@
 
           <g>
             <rect x="0" y="45" width="100%" height="25" fill="white" />
-            <rect x="0" y="45" width="300" height="25" fill="url(#black-boxes-pattern)">
-              <animateTransform
-                attributeName="transform"
-                type="translate"
-                from="0"
-                to="300"
-                dur="10s"
-                repeatCount="indefinite"
-              />
+            <rect id="blackBoxesRight" x="0" y="45" width="300" height="25" fill="url(#black-boxes-pattern)">
             </rect>
-            <rect x="0" y="45" width="300" height="25" fill="url(#black-boxes-pattern)">
-              <animateTransform
-                attributeName="transform"
-                type="translate"
-                from="-300"
-                to="0"
-                dur="10s"
-                repeatCount="indefinite"
-              />
+            <rect id="blackBoxesLeft" x="0" y="45" width="300" height="25" fill="url(#black-boxes-pattern)">
             </rect>
           </g>
         </g>
