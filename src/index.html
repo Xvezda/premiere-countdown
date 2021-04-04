@@ -284,63 +284,6 @@
               }
           }
 
-          #hexMaskLeftGroup {
-              animation-name: hex-mask-left-move, hex-mask-left-fade;
-              animation-direction: alternate;
-              animation-duration: 1s;
-              animation-iteration-count: infinite;
-              animation-timing-function: ease-out;
-          }
-
-          @keyframes hex-mask-left-move {
-              from {
-                  transform: translate3d(0px, 0, 0);
-                  -webkit-transform: translate3d(0px, 0, 0);
-              }
-              to {
-                  transform: translate3d(5px, 0, 0);
-                  -webkit-transform: translate3d(5px, 0, 0);
-              }
-          }
-
-          @keyframes hex-mask-left-fade {
-              from {
-                  opacity: 1;
-              }
-              to {
-                  opacity: 0;
-              }
-          }
-
-          #hexMaskRightGroup {
-              animation-name: hex-mask-right-move, hex-mask-right-fade;
-              animation-direction: alternate;
-              animation-duration: 1s;
-              animation-delay: -1s;
-              animation-iteration-count: infinite;
-              animation-timing-function: ease-out;
-          }
-
-          @keyframes hex-mask-right-move {
-              from {
-                  transform: translate3d(150px, 0, 0);
-                  -webkit-transform: translate3d(150px, 0, 0);
-              }
-              to {
-                  transform: translate3d(145px, 0, 0);
-                  -webkit-transform: translate3d(145px, 0, 0);
-              }
-          }
-
-          @keyframes hex-mask-right-fade {
-              from {
-                  opacity: 1;
-              }
-              to {
-                  opacity: 0;
-              }
-          }
-
           #waveFlow {
                animation-name: wave-flow-move;
                animation-duration: 20s;
@@ -647,8 +590,44 @@
               height="40"
               fill="#29b5c3"
             />
-            <g id="hexMaskLeftGroup" mask="url(#hexagon-mask-left)"
+            <g mask="url(#hexagon-mask-left)"
   >
+              <animateTransform
+                id="hexMaskMoveRight"
+                attributeName="transform"
+                type="translate"
+                from="0"
+                to="5"
+                dur="1s"
+                begin="0s;hexMaskMoveLeft.end"
+              />
+              <animateTransform
+                id="hexMaskMoveLeft"
+                attributeName="transform"
+                type="translate"
+                from="5"
+                to="0"
+                dur="1s"
+                begin="hexMaskMoveRight.end"
+              />
+
+              <animate
+                id="hexMaskFadeIn"
+                attributeName="opacity"
+                from="0"
+                to="1"
+                dur="1s"
+                begin="hexMaskMoveLeft.begin"
+              />
+              <animate
+                id="hexMaskFadeOut"
+                attributeName="opacity"
+                from="1"
+                to="0"
+                dur="1s"
+                begin="hexMaskMoveRight.begin"
+              />
+
               <rect
                 x="0"
                 y="260"
@@ -688,44 +667,43 @@
 
             <g mask="url(#hexagon-mask-right)">
               <!-- Reuse left mask -->
-              <g id="hexMaskRightGroup" mask="url(#hexagon-mask-left)" transform="translate(150)"
+              <g mask="url(#hexagon-mask-left)" transform="translate(150)"
     >
-                <rect x="0" y="260" width="300" height="40" fill="#9262a7" />
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  from="145"
+                  to="150"
+                  dur="1s"
+                  begin="hexMaskColorChange.begin"
+                />
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  from="150"
+                  to="145"
+                  dur="1s"
+                  begin="hexMaskColorRestore.begin"
+                />
+                <rect x="0" y="260" width="300" height="40" fill="#9262a7" opacity="0">
+                  <animate
+                    attributeName="opacity"
+                    from="0"
+                    to="1"
+                    dur="1s"
+                    begin="hexMaskColorChange.begin"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    from="1"
+                    to="0"
+                    dur="1s"
+                    begin="hexMaskColorRestore.begin"
+                  />
+                </rect>
               </g>
             </g>
 
-          </g>
-
-          <g transform="rotate(30)">
-            <g id="waveFlow">
-              <rect
-                x="0" y="15"
-                width="1200" height="20"
-                fill="url(#wave-line-pattern)"
-              >
-              </rect>
-              <rect
-                x="0" y="15"
-                width="1200" height="20"
-                fill="url(#wave-line-pattern)"
-                transform="translate(0, 12)"
-              >
-              </rect>
-              <rect
-                x="0" y="15"
-                width="1200" height="20"
-                fill="url(#wave-line-pattern)"
-                transform="translate(0, 24)"
-              >
-              </rect>
-              <rect
-                x="0" y="15"
-                width="1200" height="20"
-                fill="url(#wave-line-pattern)"
-                transform="translate(0, 36)"
-              >
-              </rect>
-            </g>
           </g>
 
           <g>
